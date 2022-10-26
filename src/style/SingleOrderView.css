@@ -1,0 +1,14 @@
+.single-order {
+    width: 700px;
+    word-wrap:break-word;
+    overflow: auto;
+    margin: 10px;
+}
+
+.closed {
+    color: red;
+}
+
+.open {
+    color: rgb(48, 213, 7)
+}

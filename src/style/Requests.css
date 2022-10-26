@@ -1,0 +1,46 @@
+.open-orders, .closed-orders {
+    text-align: center;
+    
+}
+
+.request {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+    height: 350px;
+    overflow: scroll;
+    display: inline-block;
+    margin: 5px;
+}
+
+#warn {
+	color: red;
+}
+
+.clear-closed-orders {
+	margin: auto;
+  	width: 50%;
+  	border: 3px solid black;
+  	padding: 10px;
+	Text-align: center;
+}
+
+.request:hover {
+	border: 1px solid black;
+	box-shadow: 0.7px 1px 0.7px -11px rgba(0, 0, 0, 0.022),
+		1.6px 2.3px 1.5px -11px rgba(0, 0, 0, 0.035),
+		2.7px 4px 2.6px -11px rgba(0, 0, 0, 0.044),
+		4.1px 6.2px 4.1px -11px rgba(0, 0, 0, 0.053),
+		6.1px 9.1px 6px -11px rgba(0, 0, 0, 0.061),
+		8.9px 13.4px 8.6px -11px rgba(0, 0, 0, 0.068),
+		13.4px 20.1px 12.4px -11px rgba(0, 0, 0, 0.075),
+		21.3px 32px 18.5px -11px rgba(0, 0, 0, 0.081),
+		40px 60px 36px -11px rgba(0, 0, 0, 0.09);
+	background-color: white;
+	cursor: pointer;
+}
+
+#complete, #restore {
+    width: 215px;
+}
