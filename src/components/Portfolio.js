@@ -37,24 +37,22 @@ const Portfolio = () => {
             <ul className='product-list'>
                 {portfolio.map((p) => {
                     return (
-                        hello
-                        // <li id={p.id} key={p.id}>
-                        //     <div className='portfolio-product'>
-                        //         <Fade in={true}>
-                        //             <Link to={`${p.id}`}>
-                        //                 <img
-                        //                     src={'/img/' + p.img}
-                        //                     alt={`${p.name}`}
-                        //                     height='200px'
-                        //                     className='product-img'
-                        //                     onMouseEnter={handleMouseEnter}
-                        //                     onMouseLeave={handleMouseLeave}
-                        //                 />
-                        //             </Link>
-                        //         </Fade>
-                        //     </div>
-                        //                 {p.id}
-                        // </li>
+                        <li id={p.id} key={p.id}>
+                            <div className='portfolio-product'>
+                                <Fade in={true}>
+                                    <Link to={`${p.id}`}>
+                                        <img
+                                            src={'./img/' + p.img}
+                                            alt={`${p.name}`}
+                                            height='200px'
+                                            className='product-img'
+                                            onMouseEnter={handleMouseEnter}
+                                            onMouseLeave={handleMouseLeave}
+                                        />
+                                    </Link>
+                                </Fade>
+                            </div>
+                        </li>
                     );
                 })}
             </ul>
