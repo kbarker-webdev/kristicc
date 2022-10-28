@@ -43,7 +43,7 @@ const Portfolio = () => {
                                 <Fade in={true}>
                                     <Link to={`${p.id}`}>
                                         <img
-                                            src={process.env.PUBLIC_URL + '/img/' + p.img}
+                                            src={'/img/' + p.img}
                                             alt={`${p.name}`}
                                             height='200px'
                                             className='product-img'
