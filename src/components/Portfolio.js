@@ -53,6 +53,7 @@ const Portfolio = () => {
                                     </Link>
                                 </Fade>
                             </div>
+                                        {p.id}
                         </li>
                     );
                 })}
