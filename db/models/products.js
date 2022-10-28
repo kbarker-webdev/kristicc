@@ -101,6 +101,20 @@ async function getPortfolio() {
   }
 }
 
+async function addPortfolioItem({ name, description, img }) {
+  try {
+    const { rows: item } = await client.query(`
+    INSERT INTO portfolio(name, description, img)
+    VALUES($1, $2, $3)
+    RETURNING *;
+    `, [name, description, img]);
+
+    return item;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports = {
   getProductById,
   getAllProducts,
@@ -108,5 +122,6 @@ module.exports = {
   getAllProductsByCategory, 
   updateProduct,
   deleteProduct,
-  getPortfolio
+  getPortfolio,
+  addPortfolioItem
 };

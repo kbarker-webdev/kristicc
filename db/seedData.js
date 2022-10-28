@@ -116,8 +116,127 @@ const customRequests = [
     }
 ]
 
+const portfolio = [
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1098.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1099.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1100.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1102.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1103.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1121.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1122.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_1126.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2134.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2135.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2136.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2137.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2140.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2141.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2143.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2147.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2148.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2149.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2193.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2194.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2195.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'IMG_2389.jpg'
+    },
+    {
+        name: '',
+        description: '',
+        img: 'Nurse badge.jpg'
+    }
+];
+
 module.exports = {
 	cups,
 	initialUsers,
-    customRequests
+    customRequests,
+    portfolio
 };

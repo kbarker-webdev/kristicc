@@ -4,7 +4,7 @@ const {
   custom
 } = require('./');
 
-const { cups, initialUsers, customRequests } = require('./seedData');
+const { cups, initialUsers, customRequests, portfolio } = require('./seedData');
 
 async function buildTables() {
   try {
@@ -69,6 +69,10 @@ async function populateInitialData() {
     console.log('Creating custom requests...')
     for (const req of customRequests) {
       await custom.createCustomRequest(req)
+    }
+    console.log('Creating portfolio...')
+    for (const item of portfolio) {
+      await products.addPortfolioItem(item)
     }
     console.log('db rebuilt')
   } catch (error) {

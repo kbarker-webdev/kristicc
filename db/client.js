@@ -9,18 +9,13 @@ const DB_URL =
 
 let client;
 
-// github actions client config
-if (process.env.CI) {
-  client = new Client({
+client = new Client({
     host: 'localhost',
     port: 5432,
     user: 'postgres',
     password: 'postgres',
-    database: 'postgres',
+    database: 'kristicc',
   });
-} else {
-  // local / heroku client config
-  client = new Client(DB_URL);
-}
+
 
 module.exports = client;

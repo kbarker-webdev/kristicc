@@ -8,6 +8,7 @@ const Portfolio = () => {
     const [portfolio, setPortfolio] = useState([]);
 
     useEffect(() => {
+        console.log(process.env.PUBLIC_URL)
         getPortfolio()
             .then(res => {
                 setPortfolio(res);
