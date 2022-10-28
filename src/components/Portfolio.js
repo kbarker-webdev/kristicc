@@ -42,7 +42,7 @@ const Portfolio = () => {
                                 <Fade in={true}>
                                     <Link to={`${p.id}`}>
                                         <img
-                                            src={"~/img/" + p.img}
+                                            src={"http://216.250.122.41/img/" + p.img}
                                             alt={`${p.name}`}
                                             height='200px'
                                             className='product-img'
