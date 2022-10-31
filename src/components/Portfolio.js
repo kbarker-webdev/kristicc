@@ -40,7 +40,7 @@ const Portfolio = () => {
                         <li id={p.id} key={p.id}>
                             <div className='portfolio-product'>
                                 <Fade in={true}>
-                                    <Link to={`${p.id}`}>
+                                    {/* <Link to={`${p.id}`}> */}
                                         <img
                                             src={"/img/" + p.img}
                                             alt={`${p.name}`}
@@ -49,7 +49,7 @@ const Portfolio = () => {
                                             onMouseEnter={handleMouseEnter}
                                             onMouseLeave={handleMouseLeave}
                                         />
-                                    </Link>
+                                    {/* </Link> */}
                                 </Fade>
                             </div>
                         </li>

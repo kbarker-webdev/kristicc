@@ -11,7 +11,7 @@ import SingleProductView from './SingleProductView.js'
 import SingleOrderView from './SingleOrderView';
 
 const App = () => {
-  const [APIHealth, setAPIHealth] = useState('');
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     
