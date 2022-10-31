@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import '../style/Header.css';
 
-const pages = ['Hzzzzzz', 'Pzzzzzzzzzz', 'Customize', 'Admin', 'Login'];
+const pages = ['Hzzzzzz', 'Pzzzzzzzzzz', 'Czzzzzzz', 'Admin', 'Login'];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
