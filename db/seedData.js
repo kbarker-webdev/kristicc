@@ -38,30 +38,6 @@ const cups = [
 
 const initialUsers = [
 	{
-		username: 'JohnSnow',
-		password: 'winteriscoming',
-		email: 'king@inthenorth.com',
-		admin: false,
-	},
-	{
-		username: 'admin',
-		password: 'admin',
-		email: 'admin@admin.com',
-		admin: true,
-	},
-	{
-		username: 'ketsy',
-		password: 'ketsy',
-		email: 'ketsy@ketsy.com',
-		admin: true,
-	},
-	{
-		username: 'cameron',
-		password: 'cameron',
-		email: 'cameron@cameron.com',
-		admin: true,
-	},
-	{
 		username: 'kenny',
 		password: 'kenny',
 		email: 'kenny@kenny.com',

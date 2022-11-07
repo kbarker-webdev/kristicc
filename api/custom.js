@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const { custom } = require('../db');
+const { requireAdmin } = require('./utils');
 
-router.post('/', async (req, res, next) => {
+router.post('/', requireAdmin, async (req, res, next) => {
     try {
         const { color, pid, usertext, font, comments, name, phone, email } = req.body;
         const request = await custom.createCustomRequest({ color, pid, usertext, font, comments, name, phone, email });
@@ -12,7 +13,7 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.post('/complete', async (req, res, next) => {
+router.post('/complete', requireAdmin, async (req, res, next) => {
     try {
         const { id, value } = req.body;
         const request = await custom.markRequestAsComplete(id, value);
@@ -22,7 +23,7 @@ router.post('/complete', async (req, res, next) => {
     }
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/', requireAdmin, async (req, res, next) => {
     try {
         const requests = await custom.getCustomRequests();
         requests.sort((a, b) => {
@@ -34,7 +35,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requireAdmin, async (req, res, next) => {
     try {
         const { id } = req.params;
         const requests = await custom.getCustomRequestById(id);
@@ -44,7 +45,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/complete', async (req, res, next) => {
+router.delete('/complete', requireAdmin, async (req, res, next) => {
     try {
         const deleted = await custom.clearClosedRequests();
         res.send(deleted);

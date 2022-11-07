@@ -1,80 +1,43 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import '../style/Header.css';
 
-const pages = ['Hzzzzzz', 'Pzzzzzzzzzz', 'Czzzzzzz', 'Admin', 'Login'];
+const pages = ['Home', 'Portfolio', 'Customize', 'Admin', 'Login'];
 
-const Header = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-
+const Header = (props) => {
   const navigate = useNavigate();
+  const user = props.user;
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  const clickNavButton = (e) => {
+    navigate('/' + e.target.innerText.toLowerCase())
+  }
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const mouseEnter = (e) => {
+    console.log(e.target)
+    const video = document.getElementById('mp4logo');
+    video.pause();
+    video.currentTime = 100;
+    video.load();
+  }
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <div className='header-container'>
+      <video className='logo' id='mp4logo' width="150" height="150" onMouseEnter={(e) => mouseEnter(e)} autoPlay muted>
+        <source src='/img/logo.mp4' type="video/mp4" />
+      </video>
+      <br/><br/><br/><br/>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-                        <Button
-                        className='nav-button'
-                        key={page}
-                        onClick={() => navigate(page.toLowerCase())}
-                        sx={{ my: 2, color: 'white', display: 'block' , '&:hover': {
-                            backgroundColor: '#0062cc',
-                          }}}
-                        >
-                            {page}
-                        </Button>
-            ))}
-          </Box>
+          {/* <li className='link' onClick={(e) => {clickNavButton(e)}}>Home</li> */}
+          <li className='link' onClick={(e) => {clickNavButton(e)}}>Portfolio</li>
+          <li className='link' onClick={(e) => {clickNavButton(e)}}>Customize</li>
+          {user.token ?
+            <li className='link' onClick={(e) => {clickNavButton(e)}}>Admin</li>
+            : null
+          }
+          <li className='link' onClick={(e) => {clickNavButton(e)}}>Login</li>
 
-          
-        </Toolbar>
-      </Container>
-    </AppBar>
+    </div>
   );
 };
 export default Header;

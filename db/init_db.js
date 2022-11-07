@@ -1,7 +1,8 @@
 const {
   client,
   products,
-  custom
+  custom,
+  users
 } = require('./');
 
 const { cups, initialUsers, customRequests, portfolio } = require('./seedData');
@@ -16,6 +17,7 @@ async function buildTables() {
       DROP TABLE IF EXISTS products;
       DROP TABLE IF EXISTS portfolio;
       DROP TABLE IF EXISTS customOrders;
+      DROP TABLE IF EXISTS users;
     `)
 
     console.log('building tables...');
@@ -55,6 +57,16 @@ async function buildTables() {
       );
     `);
 
+    await client.query(`
+      CREATE TABLE users (
+        id SERIAL PRIMARY KEY,
+        username VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        is_admin BOOLEAN DEFAULT false
+      );
+    `);
+
   } catch (error) {
     throw error;
   }
@@ -73,6 +85,10 @@ async function populateInitialData() {
     console.log('Creating portfolio...')
     for (const item of portfolio) {
       await products.addPortfolioItem(item)
+    }
+    console.log('Creating initial users...')
+    for (const user of initialUsers) {
+      await users.createUser(user)
     }
     console.log('db rebuilt')
   } catch (error) {

@@ -1,6 +1,7 @@
 .open-orders, .closed-orders {
-    text-align: center;
-    
+    color: pink;
+	display: flex;
+	justify-content: center;
 }
 
 .request {
@@ -12,6 +13,16 @@
     overflow: scroll;
     display: inline-block;
     margin: 5px;
+  	text-align: left;
+}
+
+.center-card {
+	text-align: left;
+	
+}
+
+.card-title {
+	color: black;
 }
 
 #warn {
@@ -37,7 +48,7 @@
 		13.4px 20.1px 12.4px -11px rgba(0, 0, 0, 0.075),
 		21.3px 32px 18.5px -11px rgba(0, 0, 0, 0.081),
 		40px 60px 36px -11px rgba(0, 0, 0, 0.09);
-	background-color: white;
+	background-color: rgba(255,255,255,0.45);
 	cursor: pointer;
 }
 

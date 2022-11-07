@@ -35,16 +35,37 @@ const Requests = () => {
         }
     }
 
+    const boxSX = {
+        p: 2, 
+        backgroundColor: 'rgba(255,255,255,0.13)',
+        height: '380px',
+        "&:hover": {
+          color:  '#080710',
+          backgroundColor: 'rgba(255,255,255,0.50)'
+        },
+      };
+
+    const buttonSX = {
+        backgroundColor: 'rgba(255,255,255,0.50)', 
+        marginTop: '2.5px', 
+        color: '#080710',
+        "&:hover": {
+            color:  '#080710',
+            backgroundColor: 'rgba(255,255,255,0.75)'
+          },
+    }
+
     return (
         <div id='requests-container'>
             <h1 className="open-orders">Open Orders:</h1>
+            <div className="center-card">
             {customRequests.map(request => {
                 return (
                     !request.complete ?
                         // <Link to={`/admin/orders/${request.id}`}>
 
-                            <Card key={request.id} className="request" id="request-card" variant="outlined" sx={{ p: 2 }} onClick={(e) => {clickRequest(e, request)}}>
-                                <h2>{request.name}</h2>
+                            <Card key={request.id} className="request" id="request-card" variant="outlined" sx={boxSX} onClick={(e) => {clickRequest(e, request)}}>
+                                <h2 className="card-title">{request.name}</h2>
                                 Product: {request.pid}<br />
                                 Color: {request.color}<br />
                                 Text: {request.usertext}<br />
@@ -58,9 +79,11 @@ const Requests = () => {
                                 <br />
                                 Date: {request.date}
                                 <br />
+                                <br />
                                 <Button
                                     id='complete'
                                     variant='contained'
+                                    sx={buttonSX}
                                 >
                                     Order Complete
                                 </Button>
@@ -72,12 +95,14 @@ const Requests = () => {
                 )
             }
             )}
+            </div>
             <h1 className="closed-orders">Closed Orders:</h1>
+            <div className="center-card">
             {customRequests.map(request => {
                 return (
                     request.complete ?
-                            <Card key={request.id} className="request" variant="outlined" sx={{ p: 2 }} onClick={(e) => {clickRequest(e, request)}}>
-                                <h2>{request.name}</h2>
+                            <Card key={request.id} className="request" variant="outlined" sx={boxSX} onClick={(e) => {clickRequest(e, request)}}>
+                                <h2 className="card-title">{request.name}</h2>
                                 Product: {request.pid}<br />
                                 Color: {request.color}<br />
                                 Text: {request.usertext}<br />
@@ -91,9 +116,11 @@ const Requests = () => {
                                 <br />
                                 Date: {request.date}
                                 <br />
+                                <br />
                                 <Button
                                     id='restore'
                                     variant='contained'
+                                    sx={buttonSX}
                                 >
                                     Re-Open Order
                                 </Button>
@@ -107,6 +134,7 @@ const Requests = () => {
             )
 
             }
+            </div>
             <br />
             {areClosedOrders ?
             <div className="clear-closed-orders">

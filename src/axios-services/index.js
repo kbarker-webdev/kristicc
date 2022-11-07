@@ -10,6 +10,18 @@ export async function getAPIHealth() {
   }
 }
 
+export async function login(username, password) {
+	try {
+		const { data } = await axios.post('/api/users/login', {
+			username,
+			password,
+		});
+		return data;
+	} catch (error) {
+		throw error;
+	}
+}
+
 export async function getAllProducts() {
 	try {
 		const { data } = await axios.get(`/api/products`);

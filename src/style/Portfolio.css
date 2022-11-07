@@ -1,0 +1,20 @@
+.swiper {
+    width: 600px;
+    height: 400px;
+    position: absolute;
+    left: 37%;
+    top: 30%;
+  }
+
+  .portfolio-img {
+    height: auto; 
+    width: auto; 
+    max-width: 302px;
+    max-height: 291px;
+    border-radius: 10px;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }

@@ -1,7 +1,8 @@
 const express = require('express');
 const usersRouter = express.Router();
-const { JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
+const { users } = require('../db')
 
 usersRouter.post('/login', async (req, res, next) => {
 	const { username, password } = req.body;
@@ -13,9 +14,12 @@ usersRouter.post('/login', async (req, res, next) => {
 		});
 	}
 	try {
-		const user = await getUser({ username, password });
+		const user = await users.getUser({ username, password });
+		if (user === 'invalid credentials') {
+			res.send(user)
+		}
 		if (user) {
-			const token = jwt.sign(user, process.env.JWT_SECRET, {
+			const token = jwt.sign(user, JWT_SECRET, {
 				expiresIn: '1w',
 			});
 			res.send({

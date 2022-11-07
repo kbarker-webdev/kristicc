@@ -1,5 +1,5 @@
 const apiRouter = require('express').Router();
-
+const { JWT_SECRET } = process.env;
 const { users } = require('../db')
 
 
@@ -8,6 +8,12 @@ apiRouter.get('/', (req, res, next) => {
     message: 'API is under construction!',
   });
 });
+
+apiRouter.use((req, res, next) => {
+  console.log(JWT_SECRET)
+  console.log(req.body);
+  next();
+})
 
 apiRouter.use(async (req, res, next) => {
   const prefix = 'Bearer ';
