@@ -14,9 +14,18 @@ const SingleOrderView = () => {
         getCustomRequestById(id)
             .then(res => {
                 setRequest(res)
-                console.log(res)
             })
     }, [])
+
+    const buttonSX = {
+        width: '100%',
+        backgroundColor: 'rgba(255,255,255,0.50)',
+        color: '#080710',
+        "&:hover": {
+            color:  '#080710',
+            backgroundColor: 'rgba(255,255,255,0.75)'
+          },
+    }
 
 
     return (
@@ -39,7 +48,8 @@ const SingleOrderView = () => {
             <br /><br />
             {request.complete ?
                 <Button
-                    id='complete'
+                    sx={buttonSX}
+                    id='mark-complete'
                     variant='contained'
                     onClick={() => {
                         markRequestAsComplete(request.id, false)
@@ -49,8 +59,10 @@ const SingleOrderView = () => {
                     Re-Open Order
                 </Button>
                 :
+                
                 <Button
-                    id='complete'
+                    sx={buttonSX}
+                    id='mark-complete'
                     variant='contained'
                     onClick={() => {
                         markRequestAsComplete(request.id, true)

@@ -47,6 +47,7 @@ export async function createCustomRequest(color, pid, usertext, font, comments, 
 
 export async function getCustomRequests() {
   try {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token;
     const { data } = await axios.get(`/api/custom`);
     return data;
   } catch (error) {}
@@ -54,6 +55,7 @@ export async function getCustomRequests() {
 
 export async function getCustomRequestById(id) {
   try {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token;
     const { data } = await axios.get(`/api/custom/${id}`);
     return data;
   } catch (error) {}
@@ -61,6 +63,7 @@ export async function getCustomRequestById(id) {
 
 export async function markRequestAsComplete(id, value) {
   try {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token;
     const { data } = await axios.post(`/api/custom/complete`, {id, value});
     return data;
   } catch (error) {
@@ -70,6 +73,7 @@ export async function markRequestAsComplete(id, value) {
 
 export async function clearClosedRequests() {
   try {
+    axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.token;
     const { data } = await axios.delete(`/api/custom/complete`);
     return data;
   } catch (error) {

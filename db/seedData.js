@@ -1,17 +1,17 @@
 const cups = [
     {   name: '20 oz Skinny',
         description: '20 oz Skinny cup. Comes with screw top and straw.',
-        price: 40.99,
+        price: 30.00,
         img: 'https://imgur.com/si2IV3f.png'
     },
     {   name: '30 oz Skinny',
         description: '30 oz Skinny cup. Comes with screw top and straw.',
-        price: 40.99,
+        price: 35.00,
         img: 'https://imgur.com/si2IV3f.png'
     },
     {   name: '30 oz Modern Curve',
         description: '30 oz Modern Curve Design. Comes with screw top and straw.',
-        price: 40.99,
+        price: 35.00,
         img: 'https://imgur.com/7JDRBXG.png'
     },
     {   name: '35 oz Straight Classic Skinny',
@@ -38,8 +38,8 @@ const cups = [
 
 const initialUsers = [
 	{
-		username: 'kenny',
-		password: 'kenny',
+		username: 'kristi',
+		password: 'britt4788',
 		email: 'kenny@kenny.com',
 		admin: true,
 	},

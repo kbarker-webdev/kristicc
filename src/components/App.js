@@ -33,6 +33,10 @@ const App = () => {
       </div>
       <div className='main'>
         <Routes>
+        <Route
+            path='/'
+            element={<Portfolio />}>
+          </Route>
           <Route
             path='/home'
             element={<Portfolio />}>

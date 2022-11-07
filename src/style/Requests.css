@@ -18,7 +18,6 @@
 
 .center-card {
 	text-align: left;
-	
 }
 
 .card-title {
@@ -30,6 +29,7 @@
 }
 
 .clear-closed-orders {
+	color: white;
 	margin: auto;
   	width: 50%;
   	border: 3px solid black;

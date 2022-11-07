@@ -98,6 +98,9 @@ button {
     cursor: pointer;
 }
 
+button:hover {
+    background-color: whitesmoke;
+}
 .social {
     margin-top: 30px;
     display: flex;

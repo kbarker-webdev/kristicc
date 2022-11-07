@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById, createCustomRequest } from "../axios-services";
 import {
-	TextField,
 	Button,
-	InputLabel,
-	Select,
-	MenuItem,
 	Paper,
 } from '@mui/material';
 
@@ -23,12 +19,13 @@ const Custom = () => {
 	const [email, setEmail] = useState('');
 	const { id } = useParams();
 	const [sketchPickerColor, setSketchPickerColor] = useState({
-		r: "241",
-		g: "112",
-		b: "19",
+		r: "255",
+		g: "255",
+		b: "255",
 		a: "1",
 	});
 	const { r, g, b, a } = sketchPickerColor;
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		getProductById(id)
@@ -41,10 +38,21 @@ const Custom = () => {
 	}, []);
 
 
+	const buttonSX = {
+        backgroundColor: 'rgba(255,255,255,0.50)', 
+        marginTop: '25px', 
+        color: '#080710',
+        "&:hover": {
+            color:  '#080710',
+            backgroundColor: 'rgba(255,255,255,0.75)'
+          },
+    }
+
 	const handleSubmitRequest = () => {
 		createCustomRequest(sketchPickerColor.hex, product.name, userText, font, comments, name, phone, email)
 			.then(res => {
-				console.log(res)
+				alert('Your request has been submitted. Kristi will contact you about your order ASAP.');
+				navigate('/customize');
 			})
 	}
 
@@ -53,11 +61,11 @@ const Custom = () => {
 			<img src={product.img} alt={product.name} />
 			<Paper
 				elevation={3}
-				sx={{ p: 2 }}
+				sx={{ p: 2, backgroundColor: 'rgba(255, 255, 255, 0.13)', color: 'white' }}
 				id='spv'>
 				<div className="product-info">
-					<h2>{product.name} ${product.price}</h2>
-					<h3>{product.description}</h3>
+					<h2 className="product-info-title">{product.name} ${product.price}</h2>
+					<h3 className="product-description-title">{product.description}</h3>
 					<br />
 				</div>
 				<div className='custom-info'>
@@ -68,66 +76,52 @@ const Custom = () => {
 						color={sketchPickerColor}
 					/>
 					<br />
-					<TextField
-						sx={{ mb: 2 }}
-						id='outlined-required'
-						label='Text'
-						variant='outlined'
-						onChange={(e) => { setUserText(e.target.value) }}
-					/>
+					<label for="inp" class="inp">
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setText(e.target.value)} />
+						<span class="label">Text</span>
+						<span class="focus-bg"></span>
+					</label>
+
+
 					<br />
-					<TextField
-						sx={{ mb: 2 }}
-						id='outlined-required'
-						label='Font'
-						variant='outlined'
-						onChange={(e) => { setFont(e.target.value) }}
-					/>
+					<label for="inp" class="inp">
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setFont(e.target.value)} />
+						<span class="label">Font</span>
+						<span class="focus-bg"></span>
+					</label>
 					<br />
 				</div>
 				<div className='contact-info'>
 					<b className="title">Contact Information</b>
 					<br /><br />
-					<TextField
-						sx={{ mb: 2 }}
-						id='outlined-required'
-						label='Name'
-						variant='outlined'
-						onChange={(e) => { setName(e.target.value) }}
-					/>
+					<label for="inp" class="inp">
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setName(e.target.value)} />
+						<span class="label">Name</span>
+						<span class="focus-bg"></span>
+					</label>
 					<br />
-					<TextField
-						sx={{ mb: 2 }}
-						id='outlined-required'
-						label='Phone Number'
-						variant='outlined'
-						onChange={(e) => { setPhone(e.target.value) }}
-					/>
+					<label for="inp" class="inp">
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setPhone(e.target.value)} />
+						<span class="label">Phone Number</span>
+						<span class="focus-bg"></span>
+					</label>
 					<br />
-					<TextField
-						sx={{ mb: 2 }}
-						id='outlined-required'
-						label='Email'
-						variant='outlined'
-						onChange={(e) => { setEmail(e.target.value) }}
-					/>
+					<label for="inp" class="inp">
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setEmail(e.target.value)} />
+						<span class="label">Email</span>
+						<span class="focus-bg"></span>
+					</label>
 					<br />
-					
+
 				</div>
-				<TextField
-						sx={{ mb: 2, width: 460}}
-						id='outlined-required'
-						label='Comments'
-						variant='outlined'
-						multiline
-						rows={8.5}
-						onChange={(e) => { setComments(e.target.value) }}
-					/>
-					<br />
-				<Button
-					sx={{ width: 460 }}
+				<label for="inp" class="inp">
+					<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setComments(e.target.value)} />
+					<span class="label">Comments</span>
+					<span class="focus-bg"></span>
+				</label>
+				<Button className="button"
+				sx={buttonSX}
 					id='submit'
-					variant='contained'
 					onClick={() => handleSubmitRequest()}
 				>
 					Submit Custom Request
