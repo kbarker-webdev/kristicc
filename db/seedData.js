@@ -42,12 +42,6 @@ const initialUsers = [
 		password: 'britt4788',
 		email: 'kenny@kenny.com',
 		admin: true,
-	},
-    {
-		username: 'temp',
-		password: 'temp',
-		email: 'temp@temp.com',
-		admin: true,
 	}
 ];
 
