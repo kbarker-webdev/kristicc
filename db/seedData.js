@@ -43,6 +43,12 @@ const initialUsers = [
 		email: 'kenny@kenny.com',
 		admin: true,
 	},
+    {
+		username: 'temp',
+		password: 'temp',
+		email: 'temp@temp.com',
+		admin: true,
+	}
 ];
 
 const customRequests = [
