@@ -16,22 +16,22 @@ const cups = [
     },
     {   name: '35 oz Straight Classic Skinny',
         description: '35 oz Straight Classic Skinny. Comes with screw top and straw.',
-        price: 40.99,
+        price: 40.00,
         img: 'https://imgur.com/Xis0Cbx.png'
     },
     {   name: '25 oz Stemless (AKA Snowman Football)',
         description: '25 oz Skinny cup. Comes with screw top and straw.',
-        price: 40.99,
+        price: 40.00,
         img: 'https://imgur.com/reaM2mH.png'
     },
     {   name: '12oz Steemless Wine Glass',
         description: '12oz STEMLESS WINE GLASS W/ STRAW AND TINTED SLIDING LID',
-        price: 40.99,
+        price: 25.00,
         img: 'https://imgur.com/3AwTS1P.png'
     },
     {   name: '32oz Hydro Bottle',
         description: '32oz Hydro Bottle.',
-        price: 40.99,
+        price: 40.00,
         img: 'https://imgur.com/fkh6ekM.png'
     },
 ];

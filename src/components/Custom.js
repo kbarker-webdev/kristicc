@@ -10,6 +10,7 @@ import '../style/SingleProductView.css';
 
 
 const Custom = () => {
+	const [demoMode, setDemoMode] = useState(false);
 	const [product, setProduct] = useState({});
 	const [userText, setUserText] = useState('');
 	const [font, setFont] = useState('');
@@ -28,6 +29,7 @@ const Custom = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		setDemoMode(true);
 		getProductById(id)
 			.then(res => {
 				if (!res.id) {
@@ -49,11 +51,17 @@ const Custom = () => {
     }
 
 	const handleSubmitRequest = () => {
-		createCustomRequest(sketchPickerColor.hex, product.name, userText, font, comments, name, phone, email)
+		if (demoMode) {
+			alert('Your request has been submitted. Kristi will contact you about your order ASAP.');
+			navigate('/customize');
+		} else {
+			createCustomRequest(sketchPickerColor.hex, product.name, userText, font, comments, name, phone, email)
 			.then(res => {
 				alert('Your request has been submitted. Kristi will contact you about your order ASAP.');
 				navigate('/customize');
 			})
+		}
+		
 	}
 
 	return (

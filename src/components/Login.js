@@ -41,6 +41,24 @@ const Login = (props) => {
         }
     };
 
+    const submitHandler_frontEndOnly = async (e) => {
+        e.preventDefault();
+        alert('Please be aware that this is a pseudo login for demonstration purposes only. The functionality of the admin panel is limited as this is a "front-end" demo not utilizing the api.')
+        try {
+            let token = 'frontEndPresentation';
+            let userInfo = { username, token, demo: true };
+            localStorage.setItem('token', token);
+            localStorage.setItem('username', username);
+            props.setUser(userInfo);
+
+            setPassword('');
+            setUsername('');
+            // window.location.reload(false);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     return (
         <>
             {user.token ?
@@ -62,6 +80,7 @@ const Login = (props) => {
                     </div>
                     <form>
                         <h3>Login Here</h3>
+                        <p className="demo-msg">Demo Mode Only - Make up <b>ANY</b> username or password to login</p>
 
                         <label htmlFor="username">Username</label>
                         <input type="text" placeholder="Email or Phone" id="username" onChange={(e) => setUsername(e.target.value)} />
@@ -69,7 +88,7 @@ const Login = (props) => {
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" id="password" onChange={(e) => setPassword(e.target.value)} />
 
-                        <button onClick={e => submitHandler(e)}>Log In</button>
+                        <button onClick={e => submitHandler_frontEndOnly(e)}>Log In (Front end only)</button>
                         {/* <div className="social">
                             <div className="go"><i className="fab fa-google"></i>  Google</div>
                             <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>

@@ -9,12 +9,74 @@ const SingleOrderView = () => {
     const { id } = useParams();
     const [request, setRequest] = useState({});
     const navigate = useNavigate();
+    const [demoMode, setDemoMode] = useState(false);
+
+    let f_requests = [
+        {
+            id: 1,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Kenny',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 2,
+            date: Date.now(),
+            pid: '20oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Shirly',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 3,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Suzzy',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 4,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Adam',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        }
+    ]
 
     useEffect(() => {
-        getCustomRequestById(id)
+        if (localStorage.token === "frontEndPresentation") {
+            setDemoMode(true);
+            setRequest(f_requests[id - 1])
+        } else {
+            getCustomRequestById(id)
             .then(res => {
                 setRequest(res)
             })
+        }
+        
     }, [])
 
     const buttonSX = {
@@ -33,7 +95,7 @@ const SingleOrderView = () => {
             <h2>{request.name}</h2>
             Product: {request.pid}<br />
             Color: {request.color}<br />
-            Text: {request.userspan}<br />
+            Text: {request.usertext}<br />
             Font: {request.font}<br />
             Comments: {request.comments}<br />
             <br />

@@ -10,61 +10,153 @@ const Requests = () => {
     const [customRequests, setCustomRequests] = useState([]);
     const [reload, setReload] = useState({});
     const [areClosedOrders, setAreClosedOrders] = useState(false);
+    const [f_customRequests, f_setCustomRequests] = useState([]);
+    const [demoMode, setDemoMode] = useState(false);
     const navigate = useNavigate();
 
+    let f_requests = [
+        {
+            id: 1,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Kenny',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 2,
+            date: Date.now(),
+            pid: '20oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Shirly',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 3,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Suzzy',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        },
+        {
+            id: 4,
+            date: Date.now(),
+            pid: '30oz skinny',
+            color: '#FFFFF',
+            usertext: 'Test Text',
+            font: 'Test Font',
+            comments: 'additional info on the request...',
+            name: 'Adam',
+            phone: '111-111-1111',
+            email: 'test@test.com',
+            complete: false
+        }
+    ]
+
     useEffect(() => {
-        setAreClosedOrders(false);
-        getCustomRequests()
-            .then(res => {
-                setCustomRequests(res);
-                res.map(request => {
-                    request.complete ? setAreClosedOrders(true) : null;
-                })
+        if (localStorage.token === "frontEndPresentation") {
+            setDemoMode(true);
+            setAreClosedOrders(false);
+            setCustomRequests(f_requests);
+            f_requests.map(request => {
+                request.complete ? setAreClosedOrders(true) : null;
             })
+        } else {
+            setAreClosedOrders(false);
+            getCustomRequests()
+                .then(res => {
+                    setCustomRequests(res);
+                    res.map(request => {
+                        request.complete ? setAreClosedOrders(true) : null;
+                    })
+                })
+        }
     }, [reload]);
 
     const clickRequest = (e, request) => {
         if (e.target.id === "complete") {
-            markRequestAsComplete(request.id, true)
-            setReload({request: request.id, complete: true})
+            if (demoMode) {
+                const newState = customRequests.map(req => {
+                    if (req.id === request.id) {
+                      return {...req, complete: true};
+                    }
+
+                    return req;
+                  });
+                  setCustomRequests(newState);
+                  setAreClosedOrders(true);
+                console.log(customRequests)
+            } else {
+                markRequestAsComplete(request.id, true)
+                setReload({ request: request.id, complete: true })
+            }
+            
         } else if (e.target.id === "restore") {
-            markRequestAsComplete(request.id, false)
-            setReload({request: request.id, complete: false})
+            if (demoMode) {
+                const newState = customRequests.map(req => {
+                    if (req.id === request.id) {
+                      return {...req, complete: false};
+                    }
+
+                    return req;
+                  });
+                  setCustomRequests(newState);
+                  setAreClosedOrders(false);
+            } else {
+                markRequestAsComplete(request.id, false)
+                setReload({ request: request.id, complete: false })
+            }
         } else {
             navigate(`/admin/orders/${request.id}`)
         }
     }
 
     const boxSX = {
-        p: 2, 
+        p: 2,
         backgroundColor: 'rgba(255,255,255,0.13)',
         height: '380px',
         "&:hover": {
-          color:  '#080710',
-          backgroundColor: 'rgba(255,255,255,0.50)'
+            color: '#080710',
+            backgroundColor: 'rgba(255,255,255,0.50)'
         },
-      };
+    };
 
     const buttonSX = {
-        backgroundColor: 'rgba(255,255,255,0.50)', 
-        marginTop: '2.5px', 
+        backgroundColor: 'rgba(255,255,255,0.50)',
+        marginTop: '2.5px',
         color: '#080710',
         "&:hover": {
-            color:  '#080710',
+            color: '#080710',
             backgroundColor: 'rgba(255,255,255,0.75)'
-          },
+        },
     }
 
     return (
         <div id='requests-container'>
             <h1 className="open-orders">Open Orders:</h1>
             <div className="center-card">
-            {customRequests.map(request => {
-                return (
-                    !request.complete ?
-                        // <Link to={`/admin/orders/${request.id}`}>
+                {customRequests.map(request => {
+                    return (
+                        !request.complete ?
+                            // <Link to={`/admin/orders/${request.id}`}>
 
-                            <Card key={request.id} className="request" id="request-card" variant="outlined" sx={boxSX} onClick={(e) => {clickRequest(e, request)}}>
+                            <Card key={request.id} className="request" id="request-card" variant="outlined" sx={boxSX} onClick={(e) => { clickRequest(e, request) }}>
                                 <h2 className="card-title">{request.name}</h2>
                                 Product: {request.pid}<br />
                                 Color: {request.color}<br />
@@ -84,24 +176,25 @@ const Requests = () => {
                                     id='complete'
                                     variant='contained'
                                     sx={buttonSX}
+                                    onClick={(e) => clickRequest(e, request)}
                                 >
                                     Order Complete
                                 </Button>
                             </Card>
-                        // </Link>
+                            // </Link>
 
-                        : null
+                            : null
 
-                )
-            }
-            )}
+                    )
+                }
+                )}
             </div>
             <h1 className="closed-orders">Closed Orders:</h1>
             <div className="center-card">
-            {customRequests.map(request => {
-                return (
-                    request.complete ?
-                            <Card key={request.id} className="request" variant="outlined" sx={boxSX} onClick={(e) => {clickRequest(e, request)}}>
+                {customRequests.map(request => {
+                    return (
+                        request.complete ?
+                            <Card key={request.id} className="request" variant="outlined" sx={boxSX} onClick={(e) => { clickRequest(e, request) }}>
                                 <h2 className="card-title">{request.name}</h2>
                                 Product: {request.pid}<br />
                                 Color: {request.color}<br />
@@ -121,42 +214,51 @@ const Requests = () => {
                                     id='restore'
                                     variant='contained'
                                     sx={buttonSX}
+                                    onClick={(e) => clickRequest(e, request)}
                                 >
                                     Re-Open Order
                                 </Button>
                             </Card>
-                        : null
+                            : null
 
 
+                    )
+
+                }
                 )
 
-            }
-            )
-
-            }
+                }
             </div>
             <br />
             {areClosedOrders ?
-            <div className="clear-closed-orders">
-                <p className="warning-msg">
-                    <b id='warn'>WARNING:</b> This will <b>PERMANENTLY</b> remove all closed orders. <b>This can not be un-done!</b>
-                </p>
-                <Button
-                    sx={{ width: 600 }}
-                    id='clear'
-                    color="warning"
-                    variant='contained'
-                    onClick={() => {
-                        if (window.confirm("Are you sure you REALLY want to clear all closed orders PERMANETLY?")) {
-                            clearClosedRequests();
-                            setReload({})
-                          }
-                    }}
-                >
-                    Clear All Closed Orders
-                </Button>
-            </div>
-            : null 
+                <div className="clear-closed-orders">
+                    <p className="warning-msg">
+                        <b id='warn'>WARNING:</b> This will <b>PERMANENTLY</b> remove all closed orders. <b>This can not be un-done!</b>
+                    </p>
+                    <Button
+                        sx={{ width: 600 }}
+                        id='clear'
+                        color="warning"
+                        variant='contained'
+                        onClick={() => {
+                            if (window.confirm("Are you sure you REALLY want to clear all closed orders PERMANETLY?")) {
+                                if (demoMode) {
+                                    const newState = customRequests.map(req => {
+                                        return {...req, complete: false};
+                                      });
+                                      setCustomRequests(newState);
+                                      setAreClosedOrders(false);
+                                } else {
+                                    clearClosedRequests();
+                                    setReload({});
+                                }
+                            }
+                        }}
+                    >
+                        Clear All Closed Orders
+                    </Button>
+                </div>
+                : null
             }
         </div>
     )
