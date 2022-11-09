@@ -3,8 +3,6 @@ import 'swiper/css';
 import 'swiper/css/bundle';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-
-
 import React, { useState, useEffect } from "react"
 import { getPortfolio } from "../axios-services";
 import '../style/Portfolio.css';

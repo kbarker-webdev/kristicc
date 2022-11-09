@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { getAPIHealth } from '../axios-services';
 import '../style/App.css';
 import Portfolio from './Portfolio.js'
 import Custom from './Custom.js';
@@ -15,6 +14,8 @@ const App = () => {
   const [user, setUser] = useState({});
   const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
+
+  const demoMode = true;
 
   useEffect(() => {
     if (localStorage.token && localStorage.username) {
@@ -50,6 +51,7 @@ const App = () => {
               password={password}
               user={user}
               setUser={setUser}
+              demoMode={demoMode}
             />}>
           </Route>
           <Route
@@ -66,15 +68,15 @@ const App = () => {
           ></Route>
           <Route
             path='/customize/:id'
-            element={<Custom />}
+            element={<Custom demoMode={demoMode}/>}
           ></Route>
           <Route
             path='/admin/'
-            element={<Requests />}
+            element={<Requests demoMode={demoMode}/>}
           ></Route>
           <Route
             path='/admin/orders/:id'
-            element={<SingleOrderView />}
+            element={<SingleOrderView demoMode={demoMode}/>}
           ></Route>
         </Routes>
       </div>

@@ -7,6 +7,7 @@ const Login = (props) => {
     const [username, setUsername] = [props.username, props.setUsername];
     const [password, setPassword] = [props.password, props.setPassword];
     const user = props.user;
+    const demoMode = props;
 
     const logoutHandler = async (e) => {
         e.preventDefault();
@@ -22,28 +23,8 @@ const Login = (props) => {
 
     const submitHandler = async (e) => {
         e.preventDefault();
-        try {
-            let resp = await login(username, password);
-            let token = resp.token;
-            let userInfo = { username, token };
-            if (!resp.token) {
-                alert('Username or password incorrect');
-            } else {
-                localStorage.setItem('token', token);
-                localStorage.setItem('username', username);
-                props.setUser(userInfo);
-            }
-            setPassword('');
-            setUsername('');
-            window.location.reload(false);
-        } catch (error) {
-            throw error;
-        }
-    };
-
-    const submitHandler_frontEndOnly = async (e) => {
-        e.preventDefault();
-        alert('Please be aware that this is a pseudo login for demonstration purposes only. The functionality of the admin panel is limited as this is a "front-end" demo not utilizing the api.')
+        if (demoMode) {
+            alert('Please be aware that this is a pseudo login for demonstration purposes only. The functionality of the admin panel is limited as this is a "front-end" demo not utilizing the api.')
         try {
             let token = 'frontEndPresentation';
             let userInfo = { username, token, demo: true };
@@ -57,7 +38,28 @@ const Login = (props) => {
         } catch (error) {
             throw error;
         }
-    }
+        } else {
+
+            try {
+                let resp = await login(username, password);
+                let token = resp.token;
+                let userInfo = { username, token };
+                if (!resp.token) {
+                    alert('Username or password incorrect');
+                } else {
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('username', username);
+                    props.setUser(userInfo);
+                }
+                setPassword('');
+                setUsername('');
+                window.location.reload(false);
+            } catch (error) {
+                throw error;
+            }
+        }
+        
+    };
 
     return (
         <>
@@ -88,7 +90,7 @@ const Login = (props) => {
                         <label htmlFor="password">Password</label>
                         <input type="password" placeholder="Password" id="password" onChange={(e) => setPassword(e.target.value)} />
 
-                        <button onClick={e => submitHandler_frontEndOnly(e)}>Log In (Front end only)</button>
+                        <button onClick={e => submitHandler(e)}>Log In (Front end only)</button>
                         {/* <div className="social">
                             <div className="go"><i className="fab fa-google"></i>  Google</div>
                             <div className="fb"><i className="fab fa-facebook"></i>  Facebook</div>

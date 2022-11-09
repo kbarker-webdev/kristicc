@@ -9,8 +9,8 @@ import {
 import '../style/SingleProductView.css';
 
 
-const Custom = () => {
-	const [demoMode, setDemoMode] = useState(false);
+const Custom = (props) => {
+	const { demoMode } = props;
 	const [product, setProduct] = useState({});
 	const [userText, setUserText] = useState('');
 	const [font, setFont] = useState('');
@@ -29,7 +29,6 @@ const Custom = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		setDemoMode(true);
 		getProductById(id)
 			.then(res => {
 				if (!res.id) {
@@ -85,7 +84,7 @@ const Custom = () => {
 					/>
 					<br />
 					<label for="inp" class="inp">
-						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setText(e.target.value)} />
+						<input type="text" id="inp" placeholder="&nbsp;" onChange={e => setUserText(e.target.value)} />
 						<span class="label">Text</span>
 						<span class="focus-bg"></span>
 					</label>

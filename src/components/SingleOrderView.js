@@ -5,11 +5,11 @@ import { getCustomRequestById, markRequestAsComplete } from "../axios-services";
 import { useNavigate } from "react-router-dom";
 import '../style/SingleOrderView.css'
 
-const SingleOrderView = () => {
+const SingleOrderView = (props) => {
     const { id } = useParams();
     const [request, setRequest] = useState({});
     const navigate = useNavigate();
-    const [demoMode, setDemoMode] = useState(false);
+    const demoMode = props;
 
     let f_requests = [
         {
@@ -67,8 +67,7 @@ const SingleOrderView = () => {
     ]
 
     useEffect(() => {
-        if (localStorage.token === "frontEndPresentation") {
-            setDemoMode(true);
+        if (demoMode) {
             setRequest(f_requests[id - 1])
         } else {
             getCustomRequestById(id)
@@ -114,7 +113,9 @@ const SingleOrderView = () => {
                     id='mark-complete'
                     variant='contained'
                     onClick={() => {
-                        markRequestAsComplete(request.id, false)
+                        if (!demoMode) {
+                            markRequestAsComplete(request.id, false)
+                        } 
                         navigate(-1)
                     }}
                 >
@@ -127,7 +128,9 @@ const SingleOrderView = () => {
                     id='mark-complete'
                     variant='contained'
                     onClick={() => {
-                        markRequestAsComplete(request.id, true)
+                        if (!demoMode) {
+                            markRequestAsComplete(request.id, true)
+                        } 
                         navigate(-1)
                     }}
                 >

@@ -14,7 +14,6 @@ const Header = (props) => {
   }
 
   const mouseEnter = (e) => {
-    console.log(e.target)
     const video = document.getElementById('mp4logo');
     video.pause();
     video.currentTime = 100;

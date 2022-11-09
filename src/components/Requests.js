@@ -6,12 +6,11 @@ import { clearClosedRequests, getCustomRequests, markRequestAsComplete } from ".
 import { useNavigate } from "react-router-dom";
 import '../style/Requests.css'
 
-const Requests = () => {
+const Requests = (props) => {
     const [customRequests, setCustomRequests] = useState([]);
     const [reload, setReload] = useState({});
     const [areClosedOrders, setAreClosedOrders] = useState(false);
-    const [f_customRequests, f_setCustomRequests] = useState([]);
-    const [demoMode, setDemoMode] = useState(false);
+    const demoMode = props;
     const navigate = useNavigate();
 
     let f_requests = [
@@ -70,8 +69,7 @@ const Requests = () => {
     ]
 
     useEffect(() => {
-        if (localStorage.token === "frontEndPresentation") {
-            setDemoMode(true);
+        if (demoMode) {
             setAreClosedOrders(false);
             setCustomRequests(f_requests);
             f_requests.map(request => {
@@ -101,7 +99,6 @@ const Requests = () => {
                   });
                   setCustomRequests(newState);
                   setAreClosedOrders(true);
-                console.log(customRequests)
             } else {
                 markRequestAsComplete(request.id, true)
                 setReload({ request: request.id, complete: true })
